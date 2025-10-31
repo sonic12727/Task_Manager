@@ -1,0 +1,362 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4361ee;
+    --secondary: #3a0ca3;
+    --success: #4cc9f0;
+    --warning: #f72585;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 1.1em;
+}
+
+/* Панель управления */
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background: var(--light);
+    border-bottom: 1px solid #dee2e6;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    text-decoration: none;
+    background: white;
+    color: var(--dark);
+    border: 2px solid #dee2e6;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.add-btn {
+    background: linear-gradient(135deg, var(--success), #4895ef);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 201, 240, 0.4);
+}
+
+/* Таблица */
+.table-container {
+    padding: 30px;
+    overflow-x: auto;
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.tasks-table th {
+    background: linear-gradient(135deg, var(--secondary), #560bad);
+    color: white;
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.tasks-table td {
+    padding: 20px;
+    border-bottom: 1px solid #f1f3f4;
+    transition: background 0.3s ease;
+}
+
+.tasks-table tr:hover {
+    background: #f8f9fa;
+    transform: scale(1.01);
+}
+
+.tasks-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Статусы */
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-new {
+    background: #ffd6ff;
+    color: #b5179e;
+}
+
+.status-in_progress {
+    background: #caf0f8;
+    color: #0077b6;
+}
+
+.status-done {
+    background: #ccffdd;
+    color: #1b4332;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 25px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close {
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ffb4a2;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1.1em;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--gray);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+/* Сообщения */
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 30px;
+    font-weight: 600;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 768px) {
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filters {
+        justify-content: center;
+    }
+    
+    .tasks-table {
+        font-size: 14px;
+    }
+    
+    .tasks-table th,
+    .tasks-table td {
+        padding: 12px 8px;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tasks-table tr {
+    animation: fadeIn 0.5s ease;
+}
