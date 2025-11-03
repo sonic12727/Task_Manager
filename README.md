@@ -36,8 +36,11 @@ C:\xampp\htdocs\task_base\
 Откройте "config/connection.php" и проверьте настройки (для XAMPP по умолчанию):
 
 private $host = 'localhost';
+
 private $db_name = 'task_base';
+
 private $username = 'root';
+
 private $password = ''; Пустое т.к. запускается через XAMPP
 
 6. **Откройте в браузере**
